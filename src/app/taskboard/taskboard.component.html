@@ -1,0 +1,18 @@
+<div class="board">
+    <p>taskboard works!</p>
+
+    <!-- Add click event binding for this button... -->
+    <button 
+      style="margin: 20px 0"
+      (click)="handleClickNewTask()"
+      >
+      New Task
+    </button>
+    
+    <app-taskform [style.display]="cssShowHideTaskForm ? '' : 'none'"></app-taskform>
+
+    <div class="lists">
+      <!-- Markup for task lists here... -->
+    </div>
+</div>
+
