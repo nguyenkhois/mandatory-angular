@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { Task, TaskList, StatusType } from '../constants';
@@ -9,7 +9,7 @@ import { TaskService } from '../task.service';
     templateUrl: './taskboard.component.html',
     styleUrls: ['./taskboard.component.css']
 })
-export class TaskboardComponent implements OnInit {
+export class TaskboardComponent implements OnInit, OnDestroy {
     cssShowHideTaskForm = false;
     taskList: TaskList;
     subscription: Subscription;
@@ -19,12 +19,12 @@ export class TaskboardComponent implements OnInit {
 
     constructor(private taskService: TaskService) { }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.subscription = this.taskService.getTasks()
                                 .subscribe(list => this.taskList = list);
     }
 
-    ngOndestroy() {
+    ngOnDestroy(): void {
         this.subscription.unsubscribe();
     }
 

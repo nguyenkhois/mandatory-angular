@@ -1,39 +1,38 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { Task, TaskList, StatusType } from './constants';
 
 @Injectable({
     providedIn: 'root'
 })
 export class TaskService {
-    taskList: TaskList;
-    observer: any;
-
-    constructor() {
-        this.taskList = [];
-     }
     // add class properties for:
     //
     // a task id counter
     // an internal array of Task objects
     // an instance of BehaviorSubject
 
-    filteredTasks(status: StatusType, taskList: TaskList) {
-        return taskList.filter(item => item.status === status);
+    public taskList: TaskList = [];
+    private objBehaviorSubject: BehaviorSubject<any>;
+
+    constructor() {
+        // this.taskList = [];
+        this.objBehaviorSubject = new BehaviorSubject(this.taskList);
     }
 
-    getTasks(): Observable<TaskList> {
-        return new Observable(localObserver => {
-            this.observer = localObserver; // conver this.observer to an observer's child object which is overver
-            this.observer.next(this.taskList);
-        });
+    getTasks(): BehaviorSubject<TaskList> {
+        return this.objBehaviorSubject;
+    }
+
+    filteredTasks(status: StatusType, taskList: TaskList) {
+        return taskList.filter((item: Task) => item.status === status);
     }
 
     updateTask(id: number, status: StatusType) {
         // complete the code to update a task's status...
         const itemIndex = this.taskList.findIndex((item: Task) => item.id === id);
         this.taskList = this.taskList.map((item, index) => item.id === id && index === itemIndex ? { ...item, status: status } : item);
-        return this.observer.next(this.taskList);
+        return this.objBehaviorSubject.next(this.taskList);
     }
 
     addTask(title: string, description: string) {
@@ -44,6 +43,6 @@ export class TaskService {
             title: title,
             description: description
         }];
-        return this.observer.next(this.taskList);
+        return this.objBehaviorSubject.next(this.taskList);
     }
 }

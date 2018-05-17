@@ -17,12 +17,9 @@ export class TaskComponent implements OnInit {
 
     constructor(private taskService: TaskService) { }
 
-    ngOnInit() {
-    }
+    ngOnInit() { }
 
     handleChange(taskId: number, status: StatusType) {
         this.taskService.updateTask(taskId, status);
-        console.log(taskId, status);
-        console.log(this.taskService.taskList);
     }
 }
