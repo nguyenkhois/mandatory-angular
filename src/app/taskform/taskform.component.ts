@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TaskService } from '../task.service';
 
 @Component({
@@ -8,16 +8,17 @@ import { TaskService } from '../task.service';
     styleUrls: ['./taskform.component.css']
 })
 export class TaskformComponent implements OnInit {
+    constructor(private taskService: TaskService) { }
+
     saveState = false;
     taskForm: FormGroup;
-
-    constructor(private taskService: TaskService) { }
 
     ngOnInit() {
         this.taskForm = new FormGroup({
             title: new FormControl('', [Validators.required,
                                         Validators.minLength(3),
-                                        Validators.maxLength(30)])
+                                        Validators.maxLength(30)]),
+            description: new FormControl()
         });
     }
 

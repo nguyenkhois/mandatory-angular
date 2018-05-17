@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Task, TaskList, StatusType } from '../constants';
+import { TaskList, StatusType } from '../constants';
 
 @Component({
     selector: 'app-tasklist',

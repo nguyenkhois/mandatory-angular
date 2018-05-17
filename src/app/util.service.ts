@@ -5,13 +5,13 @@ import { StatusType } from './constants';
     providedIn: 'root'
 })
 export class UtilService {
-
     constructor() { }
+
     getStatusTypes(): string[] {
         const statusTypes: string[]  = [];
 
         for (const st in StatusType) {
-            if (!StatusType.hasOwnProperty(st)) {
+            if (StatusType.hasOwnProperty(st)) {
                 statusTypes.push(StatusType[st]);
             }
         }

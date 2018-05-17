@@ -9,7 +9,9 @@
     <div class="lists">
         <!-- Markup for task lists here... -->
         <div *ngFor="let statusType of statusTypes">
-            <app-tasklist [taskStatus]="statusType" [taskList]="filterTaskList(statusType, taskList)"></app-tasklist>
+            <app-tasklist [taskStatus]="statusType" 
+                            [taskList]="filterTaskList(statusType, taskList)">
+            </app-tasklist>
         </div>     
     </div>
 </div>

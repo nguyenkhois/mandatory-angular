@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { Task, TaskList, StatusType } from '../constants';
+import { TaskList, StatusType } from '../constants';
 import { TaskService } from '../task.service';
+import { UtilService } from '../util.service';
 
 @Component({
     selector: 'app-taskboard',
@@ -10,14 +11,12 @@ import { TaskService } from '../task.service';
     styleUrls: ['./taskboard.component.css']
 })
 export class TaskboardComponent implements OnInit, OnDestroy {
+    constructor(private taskService: TaskService, private utilService: UtilService) { }
+
     cssShowHideTaskForm = false;
     taskList: TaskList;
     subscription: Subscription;
-    statusTypes: StatusType[] = [
-        StatusType.NotStarted, StatusType.InProgress, StatusType.Completed
-    ];
-
-    constructor(private taskService: TaskService) { }
+    statusTypes: String[] = this.utilService.getStatusTypes();
 
     ngOnInit(): void {
         this.subscription = this.taskService.getTasks()

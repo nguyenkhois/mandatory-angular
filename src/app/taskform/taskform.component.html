@@ -23,7 +23,9 @@
 
 
         <!-- Apply ngModel to this input... -->
-        <input class="input" type="text" placeholder="description" id="description" name="description" />
+        <input class="input" type="text" placeholder="description"
+                id="description" name="description"
+                formControlName="description" />
 
         <!-- Disable button if form is invalid. -->
         <button type="button" [disabled]="taskForm.invalid || saveState" (click)="handleClickAddTask()">
