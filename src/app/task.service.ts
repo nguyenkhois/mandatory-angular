@@ -1,28 +1,49 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Task, StatusType } from './constants';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { Task, TaskList, StatusType } from './constants';
+
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class TaskService {
+    taskList: TaskList;
+    observer: any;
 
-  constructor() { }
-  // add class properties for:
-  //
-  // a task id counter
-  // an internal array of Task objects
-  // an instance of BehaviorSubject
+    constructor() {
+        this.taskList = [];
+     }
+    // add class properties for:
+    //
+    // a task id counter
+    // an internal array of Task objects
+    // an instance of BehaviorSubject
 
-  getTasks(status: StatusType): Observable<Task[]> {
-    // return an observable of a task array, filtered by the passed in status...
-    return null;
-}
+    filteredTasks(status: StatusType, taskList: TaskList) {
+        return taskList.filter(item => item.status === status);
+    }
 
-  updateTask(id: number, status: StatusType) {
-    // complete the code to update a task's status...
-  }
+    getTasks(): Observable<TaskList> {
+        return new Observable(localObserver => {
+            this.observer = localObserver; // conver this.observer to an observer's child object which is overver
+            this.observer.next(this.taskList);
+        });
+    }
 
-  addTask(title: string, description: string) {
-    // complete the code to add a task...
-  }
+    updateTask(id: number, status: StatusType) {
+        // complete the code to update a task's status...
+        const itemIndex = this.taskList.findIndex((item: Task) => item.id === id);
+        this.taskList = this.taskList.map((item, index) => item.id === id && index === itemIndex ? { ...item, status: status } : item);
+        return this.observer.next(this.taskList);
+    }
+
+    addTask(title: string, description: string) {
+        // complete the code to add a task...
+        this.taskList = [...this.taskList, {
+            id: Date.now(),
+            status: StatusType.NotStarted,
+            title: title,
+            description: description
+        }];
+        return this.observer.next(this.taskList);
+    }
 }

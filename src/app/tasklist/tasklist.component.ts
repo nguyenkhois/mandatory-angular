@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Task, TaskList, StatusType } from '../constants';
 
 @Component({
-  selector: 'app-tasklist',
-  templateUrl: './tasklist.component.html',
-  styleUrls: ['./tasklist.component.css']
+    selector: 'app-tasklist',
+    templateUrl: './tasklist.component.html',
+    styleUrls: ['./tasklist.component.css']
 })
-export class TasklistComponent implements OnInit {
+export class TasklistComponent {
+    @Input() taskStatus: StatusType;
+    @Input() taskList: TaskList;
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+    constructor() { }
 }

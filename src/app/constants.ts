@@ -10,3 +10,8 @@ export interface Task {
     title: string;
     description?: string;
 }
+
+export interface TaskList extends Array<Task> {}
+export const statusTypes: StatusType[] = [
+    StatusType.NotStarted, StatusType.InProgress, StatusType.Completed
+];

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { TaskService } from '../task.service';
 
 @Component({
     selector: 'app-taskform',
@@ -7,8 +8,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
     styleUrls: ['./taskform.component.css']
 })
 export class TaskformComponent implements OnInit {
+    saveState = false;
     taskForm: FormGroup;
-    constructor() { }
+
+    constructor(private taskService: TaskService) { }
 
     ngOnInit() {
         this.taskForm = new FormGroup({
@@ -19,4 +22,29 @@ export class TaskformComponent implements OnInit {
     }
 
     get title() { return this.taskForm.get('title'); }
+
+    handleClickAddTask() {
+        const elmTitle = <HTMLInputElement>document.getElementById('title');
+        const elmDescription = <HTMLInputElement>document.getElementById('description');
+        const txtTitle = elmTitle.value.trim();
+        const txtDescription = elmDescription.value.trim();
+
+        if (txtTitle.length > 0) {
+            this.taskService.addTask(txtTitle, txtDescription);
+            this.saveState = true;
+            elmTitle.value = '';
+            elmDescription.value = '';
+        }
+        console.log(this.taskService.taskList); // For testing purpose
+    }
+
+    handleToogle() {
+        if (this.saveState) {
+            const elmTitle = <HTMLInputElement>document.getElementById('title');
+            const txtTitle = elmTitle.value.trim();
+            if (txtTitle.length > 0 && this.saveState) {
+                this.saveState = false;
+            }
+        }
+    }
 }

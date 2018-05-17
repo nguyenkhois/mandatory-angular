@@ -1,21 +1,22 @@
 <!-- Add event binding for form submit... -->
-<p>taskform works!</p>
-<div>
+<div>    
     <form style="margin-bottom: 10px" [formGroup]="taskForm" #newTaskForm="ngForm">
         <!-- Apply ngModel to this input... -->
-        <input class="input" type="text" placeholder="title" formControlName="title" required />
+        <input class="input" type="text" placeholder="title" 
+                formControlName="title" id="title" name="title" 
+                (keydown)="handleToogle()"/>
 
         <!-- Markup for error messages... -->
         <div class="error" *ngIf="title.invalid && (title.dirty || title.touched)">
-            <div *ngIf="taskForm.controls['title'].hasError('required')">
+            <div *ngIf="title.hasError('required')">
                 Title is required.
             </div>
 
-            <div *ngIf="taskForm.controls['title'].hasError('minlength')">
+            <div *ngIf="title.hasError('minlength')">
                 Title length is equal to or more than 3 characters.
             </div>
 
-            <div *ngIf="taskForm.controls['title'].hasError('maxlength')">
+            <div *ngIf="title.hasError('maxlength')">
                 The maximum length for the title field is 30 characters.
             </div>
         </div>
@@ -25,7 +26,7 @@
         <input class="input" type="text" placeholder="description" id="description" name="description" />
 
         <!-- Disable button if form is invalid. -->
-        <button type="submit" [disabled]="taskForm.invalid">
+        <button type="button" [disabled]="taskForm.invalid || saveState" (click)="handleClickAddTask()">
             Save
         </button>
     </form>
