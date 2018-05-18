@@ -8,7 +8,7 @@
 
     <div class="lists">
         <!-- Markup for task lists here... -->
-        <div *ngFor="let statusType of statusTypes">
+        <div *ngFor="let statusType of compStatusTypes">
             <app-tasklist [taskStatus]="statusType" 
                             [taskList]="filterTaskList(statusType, taskList)">
             </app-tasklist>

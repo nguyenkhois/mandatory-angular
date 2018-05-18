@@ -34,9 +34,9 @@ export class TaskformComponent implements OnInit {
             this.taskService.addTask(txtTitle, txtDescription);
             this.saveState = true;
             this.taskForm.reset();
-            elmTitle.focus();
+            // elmTitle.focus();
         }
-        console.log(this.taskService.taskList); // For testing purpose
+        console.log('taskform-Current taskList', this.taskService.taskList); // For testing purpose
     }
 
     handleToogle() {

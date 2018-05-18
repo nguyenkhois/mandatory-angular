@@ -12,11 +12,10 @@ export class TaskService {
     // an internal array of Task objects
     // an instance of BehaviorSubject
 
-    public taskList: TaskList = [];
+    public taskList: TaskList = []; // Using public scope for testing purpose.You should use private
     private objBehaviorSubject: BehaviorSubject<any>;
 
     constructor() {
-        // this.taskList = [];
         this.objBehaviorSubject = new BehaviorSubject(this.taskList);
     }
 
@@ -35,14 +34,19 @@ export class TaskService {
         return this.objBehaviorSubject.next(this.taskList);
     }
 
-    addTask(title: string, description: string) {
+    addTask(inTitle: string, inDescription: string) {
         // complete the code to add a task...
         this.taskList = [...this.taskList, {
             id: Date.now(),
             status: StatusType.NotStarted,
-            title: title,
-            description: description
+            title: inTitle,
+            description: inDescription
         }];
+        return this.objBehaviorSubject.next(this.taskList);
+    }
+
+    deleteTask(taskId: number) {
+        this.taskList = this.taskList.filter((item: Task) => item.id !== taskId);
         return this.objBehaviorSubject.next(this.taskList);
     }
 }

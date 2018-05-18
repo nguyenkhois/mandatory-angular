@@ -9,7 +9,6 @@ import { TaskformComponent } from './taskform/taskform.component';
 import { TasklistComponent } from './tasklist/tasklist.component';
 
 import { TaskService } from './task.service';
-import { UtilService } from './util.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,7 @@ import { UtilService } from './util.service';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [TaskService, UtilService],
+  providers: [TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

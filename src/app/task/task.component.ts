@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Task, StatusType } from '../constants';
+import { Task, StatusType, statusTypes } from '../constants';
 import { TaskService } from '../task.service';
-import { UtilService } from '../util.service';
 
 @Component({
     selector: 'app-task',
@@ -12,11 +11,15 @@ export class TaskComponent {
     @Input() task: Task;
     @Input() taskStatus: StatusType;
 
-    constructor(private taskService: TaskService, private utilService: UtilService) { }
+    constructor(private taskService: TaskService) { }
 
-    statusTypes: String[] = this.utilService.getStatusTypes();
+    compStatusTypes: StatusType[] = statusTypes;
 
     handleChange(taskId: number, status: StatusType) {
         this.taskService.updateTask(taskId, status);
+    }
+
+    handleDeleteTask(taskId: number) {
+        this.taskService.deleteTask(taskId);
     }
 }
