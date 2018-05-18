@@ -37,7 +37,8 @@ export class TaskboardComponent implements OnInit, OnDestroy {
     }
 
     receiveSaveState(saveState) {
-        this.compSaveState = saveState; // callback value from taskform component
-        console.log('taskboard-receiveData', saveState);
+        this.compSaveState = saveState; // callback value from taskform component => it saved successfully
+        console.log('taskboard-receiveSaveState', saveState); // For testing purpose
+        setTimeout(() => { this.compSaveState = false; }, 3000); // hidden notify message
     }
 }
