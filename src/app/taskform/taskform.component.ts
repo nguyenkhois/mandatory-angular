@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TaskService } from '../task.service';
 
@@ -8,6 +8,8 @@ import { TaskService } from '../task.service';
     styleUrls: ['./taskform.component.css']
 })
 export class TaskformComponent implements OnInit {
+    @Output() outSaveState: EventEmitter<any> = new EventEmitter<any>();
+
     constructor(private taskService: TaskService) { }
 
     saveState = false;
@@ -34,7 +36,7 @@ export class TaskformComponent implements OnInit {
             this.taskService.addTask(txtTitle, txtDescription);
             this.saveState = true;
             this.taskForm.reset();
-            // elmTitle.focus();
+            this.outSaveState.emit(this.saveState);
         }
         console.log('taskform-Current taskList', this.taskService.taskList); // For testing purpose
     }

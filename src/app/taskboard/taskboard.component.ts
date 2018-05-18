@@ -13,6 +13,7 @@ export class TaskboardComponent implements OnInit, OnDestroy {
     constructor(private taskService: TaskService) { }
 
     cssShowHideTaskForm = false;
+    compSaveState = false;
     taskList: TaskList;
     subscription: Subscription;
     compStatusTypes: StatusType[] = statusTypes;
@@ -33,5 +34,10 @@ export class TaskboardComponent implements OnInit, OnDestroy {
 
     filterTaskList(statusType: StatusType, taskList: TaskList) {
         return this.taskService.filteredTasks(statusType, taskList);
+    }
+
+    receiveSaveState(saveState) {
+        this.compSaveState = saveState; // callback value from taskform component
+        console.log('taskboard-receiveData', saveState);
     }
 }
