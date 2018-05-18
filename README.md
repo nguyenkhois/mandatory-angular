@@ -10,6 +10,9 @@ You may want to view about these things in this project:
 * Callback
 * [Form validation](https://angular.io/guide/form-validation) (reactive form, built-in validators)
 
+## Screenshot
+![Screenshot](src/assets/screenshot.png)
+
 ## References
 ### Guides
 * [Angular services](https://angular.io/tutorial/toh-pt4)
