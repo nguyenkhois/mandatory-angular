@@ -10,7 +10,9 @@
     <!-- Add click event binding for this button... -->
     <button type="button" style="margin: 20px 0"
             (click)="handleClickNewTask()">
-        <span *ngIf="!cssShowHideTaskForm; else elseBlockBtnText">New Task</span> 
+        
+        <ng-template *ngIf="!cssShowHideTaskForm; then thenBlockBtnText; else elseBlockBtnText"></ng-template>    
+        <ng-template #thenBlockBtnText>New task</ng-template>
         <ng-template #elseBlockBtnText>Close</ng-template>
     </button>
 
