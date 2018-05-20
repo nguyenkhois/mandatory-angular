@@ -21,7 +21,7 @@ export class TaskboardComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.subscription = this.taskService.getTasks()
                                 .subscribe(list => this.taskList = list);
-        console.log('taskboard-utilService', this.compStatusTypes); // For testing purpose
+        console.log('taskboard-ngOnInit', this.compStatusTypes); // For testing purpose
     }
 
     ngOnDestroy(): void {

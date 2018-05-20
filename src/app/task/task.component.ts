@@ -15,11 +15,11 @@ export class TaskComponent {
 
     compStatusTypes: StatusType[] = statusTypes;
 
-    handleChange(taskId: number, status: StatusType) {
+    handleUpdate(taskId: number, status: StatusType) {
         this.taskService.updateTask(taskId, status);
     }
 
-    handleDeleteTask(taskId: number) {
+    handleDelete(taskId: number) {
         this.taskService.deleteTask(taskId);
     }
 }

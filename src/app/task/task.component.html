@@ -6,7 +6,7 @@
         </div>
 
         <!-- Markup for dropdown menu here... -->
-        <select name="" id="" (change)="handleChange(task.id, $event.target.value)">
+        <select name="" id="" (change)="handleUpdate(task.id, $event.target.value)">
             <option *ngFor="let statusType of compStatusTypes" 
                 value="{{statusType}}"
                 [selected]="statusType === taskStatus">
@@ -20,7 +20,7 @@
         {{task.description}}
         <div class="delete-task-footer">
             <img src="assets/remove.png" alt="Remove task" title="Remove task" 
-                (click)="handleDeleteTask(task.id)" class="delete-task-icon" text>
+                (click)="handleDelete(task.id)" class="delete-task-icon" text>
         </div>
     </div>
 </div>
