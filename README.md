@@ -1,11 +1,11 @@
 # Angular - Mandatory 3
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.3. You may want to know about how you can [start here](ANGULAR.md) and view [online demo here](https://nguyenkhois.github.io/mandatory-angular/dist/).
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) v6.0.3. You may want to know about how you can [start here](ANGULAR.md) and view [online demo here](https://nguyenkhois.github.io/mandatory-angular/dist/).
 
 You may want to view about these things in this project:
-* [Angular 6.0.3](https://blog.angular.io/version-6-of-angular-now-available-cc56b0efa7a4)  and [RxJS 6.1.0](https://github.com/ReactiveX/rxjs/blob/master/MIGRATION.md)
+* Created by [Angular v6.0.2](https://blog.angular.io/version-6-of-angular-now-available-cc56b0efa7a4)  and [RxJS v6.1.0](https://github.com/ReactiveX/rxjs/blob/master/MIGRATION.md)
 * Component interaction (@input, @output, services, OnInit, OnDestroy, ...)
-* RxJS ([Observable](http://reactivex.io/rxjs/manual/overview.html#observer), [BehaviorSubject](http://reactivex.io/rxjs/manual/overview.html#behaviorsubject) -> observer, subscription, .subscribe(), .unsubscribe(), next())
+* RxJS ([Observable](http://reactivex.io/rxjs/manual/overview.html#observable), [Observer](http://reactivex.io/rxjs/manual/overview.html#observer), [Subscription](http://reactivex.io/rxjs/manual/overview.html#subscription), [Subject](http://reactivex.io/rxjs/manual/overview.html#subject) -> [BehaviorSubject](http://reactivex.io/rxjs/manual/overview.html#behaviorsubject))
 * Re-rendering
 * Callback
 * [Form validation](https://angular.io/guide/form-validation) (reactive form, built-in validators)
